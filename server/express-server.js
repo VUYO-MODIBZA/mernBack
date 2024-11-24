@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5050;
 
 app.use(cors());
 app.use(express.json());
+app.use(cors({ origin: 'https://phetshiwe-lineage.netlify.app/' }));
 
 //Route to get children data
 app.get("/api/family/children", async (req, res) => {
