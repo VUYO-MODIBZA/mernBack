@@ -5,11 +5,16 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-app.use(cors());
-app.use(express.json());
-app.use(cors({ origin: 'https://phetshiwe-lineage.netlify.app/' }));
+// Configure CORS with specific allowed origin
+app.use(cors({
+  origin: 'https://phetshiwe-lineage.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Adjust as needed
+  credentials: true, // If you need cookies/auth headers
+}));
 
-//Route to get children data
+app.use(express.json());
+
+// Route to get children data
 app.get("/api/family/children", async (req, res) => {
   try {
     const childrenCollection = db.collection("children"); // Replace with your collection name
@@ -20,6 +25,24 @@ app.get("/api/family/children", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+// Route to get grand_children data
+app.get("/api/family/grand_children", async (req, res) => {
+  try {
+    const grandchildrenCollection = db.collection("grand_children"); // Replace with your collection name
+    const grandchildren = await grandchildrenCollection.find().toArray();
+    res.json(grandchildren);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 
 //Route to get grand_children data
 app.get("/api/family/grand_children", async (req, res) => {
