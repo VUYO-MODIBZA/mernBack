@@ -4,6 +4,10 @@ import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 5050;
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // Configure CORS with specific allowed origin
 app.use(cors({
@@ -37,12 +41,6 @@ app.get("/api/family/grand_children", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
 
 //Route to get grand_children data
 app.get("/api/family/grand_children", async (req, res) => {
