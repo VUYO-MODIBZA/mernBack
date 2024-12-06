@@ -5,7 +5,11 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 5050;
 // Start the server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', (err) => {
+  if (err) {
+    console.error(`Failed to start server on port ${PORT}:`, err);
+    process.exit(1);
+  }
   console.log(`Server running on port ${PORT}`);
 });
 
