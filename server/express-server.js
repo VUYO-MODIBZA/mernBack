@@ -3,7 +3,7 @@ import db from "../db/connection.js"; // Adjust the import based on your file st
 import cors from "cors";
 
 const app = express();
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT ||;
 // Start the server
 app.listen(PORT, '0.0.0.0', (err) => {
   if (err) {
