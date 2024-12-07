@@ -5,6 +5,7 @@
   "main": "express-server.js",
   "type": "module",
   "scripts": {
+    "start": "node server/express-server.js"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
